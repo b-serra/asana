@@ -11,6 +11,7 @@ defmodule Asana.Api do
 
   def request(:get, url, params) do
     url
+    |> merge_query_params(params)
     |> get(opts: [path_params: params])
     |> manage_request()
   end
@@ -39,5 +40,11 @@ defmodule Asana.Api do
     |> Logger.error()
 
     error
+  end
+
+  def merge_query_params(url, params) do
+    params
+    |> Enum.reduce(url <> "?", fn {key, val}, acc -> acc <> "#{key}=#{val}&" end)
+    |> String.trim_trailing("&")
   end
 end
