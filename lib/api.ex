@@ -42,6 +42,8 @@ defmodule Asana.Api do
     error
   end
 
+  def merge_query_params(url, []), do: ""
+
   def merge_query_params(url, params) do
     params
     |> Enum.reduce(url <> "?", fn {key, val}, acc -> acc <> "#{key}=#{val}&" end)
