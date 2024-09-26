@@ -18,7 +18,7 @@ defmodule Asana.Api do
 
   defp manage_request(req) do
     with {:ok, %Tesla.Env{status: 200, body: body}} <- req do
-      body
+      {:ok, body}
     else
       error ->
         manage_error(error)
@@ -42,7 +42,7 @@ defmodule Asana.Api do
     error
   end
 
-  def merge_query_params(url, []), do: ""
+  def merge_query_params(url, []), do: url
 
   def merge_query_params(url, params) do
     params

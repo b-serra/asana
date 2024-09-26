@@ -7,12 +7,12 @@ defmodule Asana.Projects do
     Api.request(:get, url, params)
   end
 
-  def get_multiple_projects(params \\ [limit: 10]) do
+  def get_multiple_projects(params \\ []) do
     url = "/projects"
     Api.request(:get, url, params)
   end
 
-  def get_workspace_projects(workspace_gid, params \\ [limit: 10]) do
+  def get_workspace_projects(workspace_gid, params \\ []) do
     url = "/workspaces/:workspace_gid/projects"
     params = Keyword.merge([workspace_gid: workspace_gid], params)
     Api.request(:get, url, params)

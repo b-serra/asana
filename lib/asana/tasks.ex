@@ -7,12 +7,12 @@ defmodule Asana.Tasks do
     Api.request(:get, url, params)
   end
 
-  def get_multiple_tasks(params \\ [limit: 10]) do
+  def get_multiple_tasks(params \\ []) do
     url = "/tasks"
     Api.request(:get, url, params)
   end
 
-  def get_tasks_from_project(project_gid, params \\ [limit: 10]) do
+  def get_tasks_from_project(project_gid, params \\ []) do
     url = "/projects/:project_gid/tasks?limit=:limit"
     params = Keyword.merge([project_gid: project_gid], params)
     Api.request(:get, url, params)
